@@ -175,21 +175,18 @@ my_list[[2]]
 ```{r}
 summary_fun <- function (my_list, stat = "mean") {
   my_fun <- get(stat)
-  my_summary <- c(my_fun(my_list$treatment$pre_bp),
+  my_summary <- list(my_fun(my_list$treatment$pre_bp),
                   my_fun(my_list$treatment$post_bp),
                   my_fun(my_list$treatment$diff_bp),
                   my_fun(my_list$placebo$pre_bp),
                   my_fun(my_list$placebo$post_bp),
                   my_fun(my_list$placebo$diff_bp))
-  summary_name <- character(6)
-  summary_name[1] <- paste(stat, "treatmemt", "pre", sep = "_")
-  summary_name[2] <- paste(stat, "treatmemt", "post", sep = "_")
-  summary_name[3] <- paste(stat, "treatmemt", "diff", sep = "_")
-  summary_name[4] <- paste(stat, "placebo", "pre", sep = "_")
-  summary_name[5] <- paste(stat, "placebo", "post", sep = "_")
-  summary_name[6] <- paste(stat, "placebo", "diff", sep = "_")
-  names(my_summary) <- summary_name
-  my_summary <- as.list(my_summary)
+  names(my_summary) <- c(paste(stat, "treatmemt", "pre", sep = "_"), 
+                         paste(stat, "treatmemt", "post", sep = "_"), 
+                         paste(stat, "treatmemt", "diff", sep = "_"), 
+                         paste(stat, "placebo", "pre", sep = "_"), 
+                         paste(stat, "placebo", "post", sep = "_"), 
+                         paste(stat, "placebo", "diff", sep = "_"))
   my_summary
 }
 ```
